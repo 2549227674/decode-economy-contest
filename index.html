@@ -75,6 +75,12 @@
             0%, 100% { transform: translateY(0px); }
             50% { transform: translateY(-10px); }
         }
+        .sticky-top {
+    position: -webkit-sticky; /* For Safari */
+    position: sticky;
+    top: 20vh; /* 距离视窗顶部20%的高度 */
+    height: 60vh; /* 图表容器高度为视窗的60% */
+}
     </style>
 </head>
 <body class="min-h-screen">
@@ -264,195 +270,85 @@
         </section>
 
         <!-- Detailed Explanations -->
-        <section class="py-20 px-4 bg-white/50">
-            <div class="max-w-4xl mx-auto">
-                <div id="detailed-explanations" class="space-y-12">
-                    <!-- Original 3 explanations -->
-                    <div id="detail-1" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="1">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            宿舍经济：供需关系的完美体现
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    宿舍楼人口密集，学生消费需求集中，但校园商业配套有限。有商业头脑的同学发现了这个"市场空白"，在宿舍提供零食、文具、美甲等服务。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    这种"宿舍经济"满足了同学们的即时需求，创业者也获得了收入。这就是经济学中的供需关系：有需求的地方，就会有供给出现。
-                                </p>
-                                <div class="bg-blue-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-blue-800 mb-2">经济学小贴士：</h4>
-                                    <p class="text-blue-700">
-                                        供需关系是经济学的基础概念。当需求大于供给时，价格会上涨；当供给大于需求时，价格会下降。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-1" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">观察：需求曲线(橙色)在晚上10点达到顶峰，而供给(绿色)严重不足，这正是“宿舍小卖部”的黄金商机。</p>
-                            </div>
-                        </div>
-                    </div>
+       <!-- Detailed Explanations (Scrollytelling Version) -->
+<section class="py-20 px-4 bg-white/50">
+    <div class="max-w-7xl mx-auto">
+        <!-- 1. 创建左右布局容器 -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-16">
 
-                    <div id="detail-2" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="2">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            食堂的价格策略：聪明的成本控制
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    食堂会根据不同时段的客流量和食材剩余情况调整价格。中午12点人多时价格较高，下午1点后人流减少，同样的菜品可能会降价出售。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    这是为了避免食物浪费，同时最大化收入。这种现象叫做"价格歧视"，商家根据不同时间、不同消费者的需求弹性来定价。
-                                </p>
-                                <div class="bg-green-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-green-800 mb-2">生活中的例子：</h4>
-                                    <p class="text-green-700">
-                                        电影票的价格策略也是如此：工作日白天便宜，周末晚上贵，这就是时间性的价格歧视。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-2" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">看点：下午1点后，价格曲线明显下降。这是食堂为了清理余量、减少浪费而采取的动态定价策略。</p>
-                            </div>
-                        </div>
-                    </div>
+            <!-- 2. 左侧滚动文本区 -->
+            <div id="scrolly-text" class="space-y-24">
+                <!--
+                  重要：将你原来所有的 "explanation-card" 内容
+                  按顺序移动到这里。
+                  确保每个卡片都有 data-explanation="N" 属性。
+                -->
 
-                    <div id="detail-3" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="3">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            二手交易市场：资源的最优配置
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    大学生每年都有大量物品需要处理：教材、电器、生活用品等。直接扔掉很浪费，带回家又不方便。二手交易群让这些物品找到了新主人，实现了资源的有效配置。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    对卖家来说，获得了一些收入；对买家来说，以低价买到了需要的物品。这就是经济学中的"双赢交易"。
-                                </p>
-                                <div class="bg-purple-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-purple-800 mb-2">经济学概念：</h4>
-                                    <p class="text-purple-700">
-                                        帕累托改进：在不损害任何人利益的前提下，至少让一个人的利益得到改善。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-3" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">核心：每一笔成功的二手交易，都同时创造了三种价值——卖家收益、买家节省和资源节约，实现了“三赢”。</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Card 1 -->
+                <div id="detail-1" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="1">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">宿舍经济：供需关系的完美体现</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">宿舍楼人口密集，学生消费需求集中，但校园商业配套有限。有商业头脑的同学发现了这个"市场空白"，在宿舍提供零食、文具、美甲等服务。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">这种"宿舍经济"满足了同学们的即时需求，创业者也获得了收入。这就是经济学中的供需关系：有需求的地方，就会有供给出现。</p>
+                    <div class="bg-blue-50 rounded-lg p-4"><h4 class="font-bold text-blue-800 mb-2">经济学小贴士：</h4><p class="text-blue-700">供需关系是经济学的基础概念。当需求大于供给时，价格会上涨；当供给大于需求时，价格会下降。</p></div>
+                </div>
 
-                    <!-- 4 New explanations -->
-                    <div id="detail-4" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="4">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            共享单车：解决校园出行痛点
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    共享单车解决了校园内"最后一公里"的出行痛点。学生对价格敏感，需求弹性大，所以共享单车采用低价策略吸引用户。同时，通过大数据分析用户行为，优化车辆投放位置和时间。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    这种商业模式体现了现代经济学中的"共享经济"理念：提高资源利用效率，降低使用门槛。
-                                </p>
-                                <div class="bg-orange-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-orange-800 mb-2">经济学思考：</h4>
-                                    <p class="text-orange-700">
-                                        共享经济的成功关键在于解决了用户的真实需求，同时创造了双赢的价值。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-4" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">发现：周末(周六日)的使用次数远高于工作日，说明共享单车不仅满足了通勤需求，更成为了校园休闲娱乐的重要工具。</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Card 2 -->
+                <div id="detail-2" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="2">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">食堂的价格策略：聪明的成本控制</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">食堂会根据不同时段的客流量和食材剩余情况调整价格。中午12点人多时价格较高，下午1点后人流减少，同样的菜品可能会降价出售。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">这是为了避免食物浪费，同时最大化收入。这种现象叫做"价格歧视"，商家根据不同时间、不同消费者的需求弹性来定价。</p>
+                    <div class="bg-green-50 rounded-lg p-4"><h4 class="font-bold text-green-800 mb-2">生活中的例子：</h4><p class="text-green-700">电影票的价格策略也是如此：工作日白天便宜，周末晚上贵，这就是时间性的价格歧视。</p></div>
+                </div>
 
-                    <div id="detail-5" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="5">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            考研决策：理性看待沉没成本
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    很多学生在考研决策中陷入了"沉没成本谬误"：因为已经在本科专业上投入了四年时间和金钱，所以不愿意放弃。但实际上，这些已经投入的是沉没成本，不应该影响未来的决策。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    理性的决策应该考虑机会成本：继续考研的机会成本可能是放弃工作经验的积累和收入。
-                                </p>
-                                <div class="bg-red-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-red-800 mb-2">重要提醒：</h4>
-                                    <p class="text-red-700">
-                                        做决策时，不要被过去的投入束缚，要着眼于未来的收益和成本。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-5" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">警示：“沉没成本”(红色)在决策中占比过高，正是导致非理性选择的心理陷阱。理性的决策者应更关注“机会成本”与“未来收益”。</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Card 3 -->
+                <div id="detail-3" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="3">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">二手交易市场：资源的最优配置</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">大学生每年都有大量物品需要处理：教材、电器、生活用品等。直接扔掉很浪费，带回家又不方便。二手交易群让这些物品找到了新主人，实现了资源的有效配置。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">对卖家来说，获得了一些收入；对买家来说，以低价买到了需要的物品。这就是经济学中的"双赢交易"。</p>
+                    <div class="bg-purple-50 rounded-lg p-4"><h4 class="font-bold text-purple-800 mb-2">经济学概念：</h4><p class="text-purple-700">帕累托改进：在不损害任何人利益的前提下，至少让一个人的利益得到改善。</p></div>
+                </div>
 
-                    <div id="detail-6" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="6">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            奶茶行业：同质化竞争的困境
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    奶茶行业进入门槛低，产品同质化严重，导致激烈的价格战。商家通过"买一送一"、"半价优惠"等方式抢占市场份额。但长期价格战会损害行业利润。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    最终只有实现产品差异化、建立品牌忠诚度的商家才能生存下来。这是典型的"囚徒困境"：个体理性选择导致集体非理性结果。
-                                </p>
-                                <div class="bg-yellow-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-yellow-800 mb-2">商业启示：</h4>
-                                    <p class="text-yellow-700">
-                                        在激烈竞争中，差异化是生存的关键，价格战不是长久之计。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-6" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">残酷真相：随着时间推移，关闭数量(红色)逐渐追平甚至反超开业数量(绿色)，生动展现了同质化竞争市场的“洗牌”过程。</p>
-                            </div>
-                        </div>
-                    </div>
+                <!-- Card 4, 5, 6, 7... 依此类推，把所有文本卡片都放在这里 -->
+                 <div id="detail-4" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="4">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">共享单车：解决校园出行痛点</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">共享单车解决了校园内"最后一公里"的出行痛点。学生对价格敏感，需求弹性大，所以共享单车采用低价策略吸引用户。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">这种商业模式体现了现代经济学中的"共享经济"理念：提高资源利用效率，降低使用门槛。</p>
+                    <div class="bg-orange-50 rounded-lg p-4"><h4 class="font-bold text-orange-800 mb-2">经济学思考：</h4><p class="text-orange-700">共享经济的成功关键在于解决了用户的真实需求，同时创造了双赢的价值。</p></div>
+                </div>
 
-                    <div id="detail-7" class="explanation-card bg-white rounded-2xl p-8 shadow-lg opacity-0" data-explanation="7">
-                        <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">
-                            兼职选择：人力资本投资的重要性
-                        </h3>
-                        <div class="grid md:grid-cols-2 gap-8">
-                            <div>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    大学生的时间很宝贵，兼职决策应该考虑时间成本和人力资本投资。发传单、洗碗等低技能兼职虽然能立即获得收入，但机会成本很高——牺牲了学习和提升技能的时间。
-                                </p>
-                                <p class="text-lg text-gray-700 leading-relaxed mb-4">
-                                    而实习、专业相关的兼职虽然收入可能较低，但能积累工作经验，提升未来收入潜力，是更好的人力资本投资。
-                                </p>
-                                <div class="bg-indigo-50 rounded-lg p-4">
-                                    <h4 class="font-bold text-indigo-800 mb-2">投资建议：</h4>
-                                    <p class="text-indigo-700">
-                                        选择能够提升未来收入潜力的兼职，而不仅仅是看重眼前的收入。
-                                    </p>
-                                </div>
-                            </div>
-                            <div>
-                                <div id="chart-7" style="height: 300px;"></div>
-                                <p class="text-sm text-gray-600 mt-2 text-center italic">关键对比：像“实习”这类工作，“即时收入”(蓝色)虽低，但“未来价值”(紫色)极高，是真正聪明的人力资本投资。</p>
-                            </div>
-                        </div>
-                    </div>
+                <div id="detail-5" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="5">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">考研决策：理性看待沉-没成本</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">很多学生在考研决策中陷入了"沉没成本谬误"：因为已经在本科专业上投入了四年时间和金钱，所以不愿意放弃。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">理性的决策应该考虑机会成本：继续考研的机会成本可能是放弃工作经验的积累和收入。</p>
+                    <div class="bg-red-50 rounded-lg p-4"><h4 class="font-bold text-red-800 mb-2">重要提醒：</h4><p class="text-red-700">做决策时，不要被过去的投入束缚，要着眼于未来的收益和成本。</p></div>
+                </div>
+
+                <div id="detail-6" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="6">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">奶茶行业：同质化竞争的困境</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">奶茶行业进入门槛低，产品同质化严重，导致激烈的价格战。商家通过"买一送一"、"半价优惠"等方式抢占市场份额。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">最终只有实现产品差异化、建立品牌忠诚度的商家才能生存下来。这是典型的"囚徒困境"。</p>
+                    <div class="bg-yellow-50 rounded-lg p-4"><h4 class="font-bold text-yellow-800 mb-2">商业启示：</h4><p class="text-yellow-700">在激烈竞争中，差异化是生存的关键，价格战不是长久之计。</p></div>
+                </div>
+
+                <div id="detail-7" class="explanation-card bg-white rounded-2xl p-8 shadow-lg min-h-[60vh] flex flex-col justify-center" data-explanation="7">
+                    <h3 class="text-3xl font-bold mb-6 text-gray-800" style="font-family: 'Noto Serif SC', serif;">兼职选择：人力资本投资的重要性</h3>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">大学生的时间很宝贵，兼职决策应该考虑时间成本和人力资本投资。发传单等低技能兼职虽然能立即获得收入，但机会成本很高。</p>
+                    <p class="text-lg text-gray-700 leading-relaxed mb-4">而实习、专业相关的兼职虽然收入可能较低，但能积累工作经验，提升未来收入潜力，是更好的人力资本投资。</p>
+                    <div class="bg-indigo-50 rounded-lg p-4"><h4 class="font-bold text-indigo-800 mb-2">投资建议：</h4><p class="text-indigo-700">选择能够提升未来收入潜力的兼职，而不仅仅是看重眼前的收入。</p></div>
+                </div>
+
+            </div>
+
+            <!-- 3. 右侧粘性图表区 -->
+            <div id="sticky-chart-container" class="sticky-top">
+                <div id="chart-display" class="w-full h-full bg-white rounded-2xl shadow-lg p-4" style="transition: opacity 0.5s ease;">
+                    <!-- ECharts 图表将在这里渲染 -->
                 </div>
             </div>
-        </section>
+
+        </div>
+    </div>
+</section>
 
         <!-- Quiz Section -->
         <section class="py-20 px-4">
