@@ -4,26 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>解码身边经济 - 大学校园里的经济学现象</title>
-    <!-- 1. Tailwind CSS (使用 jsDelivr 的 JIT CDN, 国内高速) -->
-    <script src="https://cdn.jsdelivr.net/npm/tailwindcss@3.4.1/src/cdn.min.js"></script>
-
-    <!-- 2. Anime.js 动画库 (使用 BootCDN) -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/animejs/3.2.1/anime.min.js"></script>
-
-    <!-- 3. ECharts 图表库 (使用 BootCDN) -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/echarts/5.4.3/echarts.min.js"></script>
-
-    <!-- 4. p5.js 背景动画库 (使用 BootCDN) -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/p5.js/1.7.0/p5.min.js"></script>
-
-    <!-- 5. 字体 (使用 loli.net 国内镜像) -->
-    <link rel="preconnect" href="https://fonts.loli.net">
-    <link rel="preconnect" href="https://fonts.gstatic.loli.net" crossorigin>
-    <link href="https://fonts.loli.net/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;500;700&family=ZCOOL+KuaiLe&display=swap" rel="stylesheet">
+    <script src="assets/js/tailwind.js"></script>
+    <script src="assets/js/anime.min.js"></script>
+    <script src="assets/js/echarts.min.js"></script>
+    <script src="assets/js/p5.min.js"></script>
+    <link rel="stylesheet" href="assets/css/fonts.css">
+    <style>
         body {
             font-family: 'Noto Sans SC', sans-serif;
             background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
         }
+
         .hero-title {
             font-family: 'ZCOOL KuaiLe', cursive;
             background: linear-gradient(135deg, #2C3E50, #E67E22);
@@ -34,51 +25,71 @@
             background-size: 200% 200%;
             animation: shimmer 6s ease-in-out infinite;
         }
+
         @keyframes shimmer {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+            0% {
+                background-position: 0% 50%;
+            }
+
+            50% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0% 50%;
+            }
         }
+
         .card-hover {
             transition: all 0.3s ease;
             transform-style: preserve-3d;
         }
-        .card-hover:hover {
-            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-        }
+
+            .card-hover:hover {
+                transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+                box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            }
+
         .principle-tag {
             background: linear-gradient(135deg, #27AE60, #2ECC71);
         }
+
         .category-tag {
             background: linear-gradient(135deg, #8E44AD, #9B59B6);
         }
+
         #p5-background {
             position: fixed;
             top: 0;
             left: 0;
             z-index: -1;
         }
+
         .content-section {
             background: rgba(255, 255, 255, 0.95);
             backdrop-filter: blur(10px);
         }
+
         .quiz-option {
             transition: all 0.3s ease;
         }
-        .quiz-option:hover {
-            background: linear-gradient(135deg, #3498DB, #2980B9);
-            color: white;
-            transform: translateX(5px);
-        }
+
+            .quiz-option:hover {
+                background: linear-gradient(135deg, #3498DB, #2980B9);
+                color: white;
+                transform: translateX(5px);
+            }
+
         .quiz-correct {
             background: linear-gradient(135deg, #27AE60, #2ECC71);
             color: white;
         }
+
         .quiz-incorrect {
             background: linear-gradient(135deg, #E74C3C, #C0392B);
             color: white;
         }
+
         .phenomenon-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
             backdrop-filter: blur(10px);
@@ -86,13 +97,36 @@
             position: relative;
             overflow: hidden;
         }
-        .phenomenon-card .overlay {
-            position: absolute; inset: 0; display: flex; align-items: end; justify-content: flex-end;
-            padding: 16px; opacity: 0; transition: all .3s ease; background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.45) 100%);
+
+            .phenomenon-card .overlay {
+                position: absolute;
+                inset: 0;
+                display: flex;
+                align-items: end;
+                justify-content: flex-end;
+                padding: 16px;
+                opacity: 0;
+                transition: all .3s ease;
+                background: linear-gradient(180deg, rgba(0,0,0,0) 40%, rgba(0,0,0,.45) 100%);
+            }
+
+            .phenomenon-card:hover .overlay {
+                opacity: 1;
+            }
+
+        .floating-icon {
+            animation: float 3s ease-in-out infinite;
         }
-        .phenomenon-card:hover .overlay { opacity: 1; }
-        .floating-icon { animation: float 3s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-10px); } }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
 
         /* Sticky header + progress bar */
         .glass {
@@ -100,15 +134,30 @@
             backdrop-filter: blur(10px);
             box-shadow: 0 6px 20px rgba(0,0,0,.06);
         }
+
         #scroll-progress {
-            position: fixed; top: 0; left: 0; height: 4px; width: 0%; z-index: 50;
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            width: 0%;
+            z-index: 50;
             background: linear-gradient(90deg, #3498DB, #9B59B6, #E67E22);
             box-shadow: 0 0 12px rgba(230,126,34,.35);
         }
-        .nav-link { transition: color .2s ease; }
-        .nav-link.active { color: #E67E22; font-weight: 700; }
+
+        .nav-link {
+            transition: color .2s ease;
+        }
+
+            .nav-link.active {
+                color: #E67E22;
+                font-weight: 700;
+            }
         /* Anchor offset for fixed header */
-        section { scroll-margin-top: 80px; }
+        section {
+            scroll-margin-top: 80px;
+        }
     </style>
 </head>
 <body class="min-h-screen">
@@ -650,6 +699,6 @@
     <!-- Back to top -->
     <button id="back-to-top" aria-label="返回顶部" class="fixed right-4 bottom-6 z-40 hidden bg-gradient-to-br from-blue-600 to-purple-600 text-white rounded-full shadow-lg w-12 h-12 flex items-center justify-center">↑</button>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
